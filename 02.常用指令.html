@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+<!-- 1. 插值表达式  v-text  v-html -->
+<!-- 2. v-cloak -->
+<!-- 3. v-bind   Vue提供的属性绑定机制   缩写是 : -->
+<!-- 4. v-on     Vue提供的事件绑定机制   缩写是 @ -->
+
+<body>
+  <div id="app">
+
+    <!--
+      v-text , 插值表达式 {{}} , v-html
+      作用: 都是把值显示在HTML页面上
+      区别:
+        1.插值表达式 只会替换自己的这个占位符,元素可以写其他内容。 有闪烁问题(先显示{{msg}}字符串,然后替换为对应的值, 网速慢的情况下会长时间显示字符串)
+        2.v-text 会覆盖元素中原本的内容所以元素无法写其他内容。 没闪烁问题
+        3.v-html 会把值当做HTML标签展示,也是覆盖元素内容没闪烁问题。 v-text与插值表达式 {{}}都是把值当做普通文本展示,
+    -->
+    <p>这个字符串不会被覆盖 {{ msg }} </p>
+    <p v-cloak>这个字符串不会被覆盖 {{ msg }} </p> <!-- 使用 v-cloak 能够解决 插值表达式闪烁的问题,会用[v-cloak]的display: none属性 -->
+    <h4 v-text="msg">这行字符串会被覆盖,无法显示</h4>
+    <div>{{msg2}}</div>
+    <div v-text="msg2"></div>
+    <div v-html="msg2">这行字符串会被覆盖,无法显示</div>
+
+    <!-- 
+      v-bind: 
+      作用: 属性绑定机制, 会把属性值去当做变量去处理, 可以写合法的JS表达式
+      简写： v-bind: 指令可以被简写为 :
+    -->
+    <input type="button" value="v-bind按钮1" v-bind:title="mytitle + '123'">
+    <input type="button" value="v-bind按钮2" :title="mytitle + '123'">
+
+    <!--
+      v-on:
+      作用: 事件绑定机制,会把属性值去当做方法名去调用
+      简写：v-on: 指令可以被简写为 @
+    -->
+    <input type="button" value="v-on按钮1" v-on:click="show">
+    <input type="button" value="v-on按钮2" @click="show">
+  </div>
+
+  <script src="./lib/vue-2.4.0.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '普通文本值',
+        msg2: '<h1>我是一个大大的H1标签</h1>',
+        mytitle: '这是一个自己定义的title'
+      },
+      // methods属性中定义了当前Vue实例所有可用的方法, 使用 this 指向当前vue实例
+      methods: { 
+        show: function () {
+          alert('Hello' + this.msg)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
