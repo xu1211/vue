@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<!--
+  监听键盘事件时需要检查详细的按键。Vue 允许为 v-on 在监听键盘事件时添加按键修饰符：
+  可以直接将 KeyboardEvent.key 暴露的任意有效按键名转换为 kebab-case 来作为修饰符。
+-->
+
+<body>
+  <div id="app">
+    <!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` -->
+    <input v-on:keyup.enter="enter">
+
+    <!-- 也可以使用按键码keyCode 调用 -->
+    <input v-on:keyup.112="submit">
+
+    <!-- 通过全局config.keyCodes对象自定义按键修饰符别名后 就能使用 `v-on:keyup.f1`调用 -->
+    <input v-on:keyup.f1="submit">
+  </div>
+
+  <script>
+    // 可以通过全局 config.keyCodes 对象自定义按键修饰符别名：
+    Vue.config.keyCodes.f1 = 112
+
+    var vm = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        enter() {
+          console.log('enter按键触发')
+        },
+        submit() {
+          console.log('f1按键触发')
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -15,6 +15,9 @@
     <p>{{ msg }}</p>
   </div>
 
+  <div id="test">
+      <p>{{ msg }} 这个div没被VM控制,所以不能使用vue</p>
+    </div>
   <script>
     // 2. MVVM中的 VM: new出来的这个Vue 的实例vm对象。
     var vm = new Vue({

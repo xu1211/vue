@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+  <div id="app">
+<!-- 传统方法 -->
+    <p>{{list}} --- {{list[0]}}</p>
+    <p>{{objectList}} --- {{objectList[0]}}</p>
+    <p>{{user}}</p>
+    <hr>
+
+<!-- v-for遍历 -->
+    <!--普通数组-->
+    <p v-for="(item, i) in list">值：{{item}} --- 索引：{{i}} </p>
+    <hr>
+
+    <!--对象数组-->
+    <p v-for="(user, i) in objectList">Id：{{ user.id }} --- name：{{ user.name }} --- 索引：{{i}} </p>
+    <hr>
+
+    <!--对象-->
+    <p v-for="(val, key, i) in user">值： {{ val }} --- 键： {{key}} --- 索引：{{i}} </p>
+    <hr>
+
+    <!--数字 如果使用 v-for迭代数字的话count值从 1 开始-->
+    <p v-for="count in 10">这是第 {{ count }} 次循环</p>
+  </div>
+
+  <script>
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        list: [1, 2, 3, 4, 5, 6],
+        objectList: [
+          { id: 1, name: 'zs1' },
+          { id: 2, name: 'zs2' },
+          { id: 3, name: 'zs3' },
+          { id: 4, name: 'zs4' }
+        ],
+        user: {
+          id: 1,
+          name: '托尼·屎大颗',
+          gender: '男'
+        }
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>
