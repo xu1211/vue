@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="button" value="获取元素" @click="getElement">
+
+    <!-- 元素中定义 ref="名称" -->
+    <h3 id="myh3" ref="myh3">这是一个dom节点</h3>
+    <hr>
+
+    <!-- 组件中定义 ref="名称" -->
+    <login ref="mylogin"></login>
+  </div>
+
+  <script>
+
+    var login = {
+      template: '<h1>登录组件</h1>',
+      data() {
+        return {
+          msg: '子组件msg'
+        }
+      },
+      methods: {
+        show() {
+          console.log('调用了子组件的方法')
+        }
+      }
+    }
+
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+      el: '#app',
+      data: {},
+      // 标签中定义的 ref="名称" 都会出现在`this.$refs`中, 就可以使用 `this.$refs` 来获取这些元素和组件
+      methods: {
+        getElement() {
+          console.log('dom可以获取到元素,但是vue不建议直接操作dom: ' + document.getElementById('myh3').innerText)
+
+          console.log('用vue ref获取元素: ' + this.$refs.myh3.innerText)
+          console.log('用vue ref获取组件date: ' + this.$refs.mylogin.msg)
+          // vue ref调用组件方法
+          this.$refs.mylogin.show()
+        }
+      },
+      components: {
+        login
+      }
+    });
+  </script>
+</body>
+
+</html>
