@@ -54,6 +54,7 @@ watch属性
 20. [computed计算属性](/28.computed.html)
 computed属性
 
+- vue动画
 
 ## `data`、`watch`、`computed`和`methods`之间的对比
 1. `data`: 定义属性, 属性值变化都会反馈在页面上
