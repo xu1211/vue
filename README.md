@@ -46,6 +46,7 @@ directive方法,directives属性
 8个会在固定时机执行的方法
 14. [用三方包vue-resource发送http请求](/14.vue-resource基本使用.html)
 15. [>>组件](/组件.md)
+components
 16. [ref获取dom元素和组件](/20.ref获取DOM元素和组件.html)
 17. [>>路由](/路由.md)
 18. [watch监听属性](/26.watch.html)
