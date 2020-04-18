@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.4.0.js"></script>
+  <!-- 1. 导入包 -->
+  <script src="./lib/vue-router-3.0.1.js"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+
+  <script>
+    //全局过滤器
+    Vue.filter()
+    //全局组件
+    Vue.component()
+    //全局自定义指令
+    Vue.directive()
+
+    var vm = new Vue({
+      //控制的视图
+      el: '#app',
+      //vm数据
+      data: {},
+      //方法
+      methods: {},
+
+      //过滤器
+      filters: {},
+      //监听
+      watch: {},
+      //计算
+      computed: {},
+
+      //组件
+      components: {},
+      //路由
+      router= new VueRouter(),
+
+      //自定义指令
+      directives: {},
+
+      //生命周期钩子函数
+      beforeCreate() { },
+      created() { },
+      beforeMount() { },
+      mounted() { },
+      beforeUpdate() { },
+      updated() { },
+      beforeDestroy() { },
+      destroyed() { }
+    });
+  </script>
+</body>
+
+</html>

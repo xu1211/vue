@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ViewUI example</title>
+  <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
+  <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+  <script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <i-table highlight-row height="330" :columns="userColumns" :data="userTableData"></i-table>
+  </div>
+
+  <script>
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        // 柜员尾箱
+        userColumns: [
+          {
+            title: '凭证类型',
+            key: 'DOC_TYPE',
+            align: 'center'
+          },
+          {
+            title: '凭证名',
+            key: 'PRODUCT_NAME',
+            align: 'center'
+          },
+          {
+            title: '起始号码',
+            key: 'START_NO',
+            align: 'center',
+            render: (h, params) => {
+              return h('InputNumber', {
+                props: {
+                  value: params.row.START_NO,
+                },
+                on: {
+                  'on-change': (value) => {
+                    params.row.START_NO = value;
+                  }
+                }
+              })
+            }
+          },
+          {
+            title: '终止号码',
+            key: 'END_NO',
+            align: 'center',
+            render: (h, params) => {
+              return h('InputNumber', {
+                props: {
+                  value: params.row.END_NO,
+                },
+                on: {
+                  'on-change': (value) => {
+                    params.row.END_NO = value;
+                  }
+                }
+              })
+            }
+          },
+          {
+            title: '数量',
+            key: 'QUANTITY',
+            align: 'center'
+          },
+          {
+            title: '卡箱编号',
+            key: 'TRAILBOX_ID',
+            align: 'center'
+          },
+          {
+            title: '操作',
+            key: 'action',
+            width: 150,
+            align: 'center',
+            render: (h, params) => {
+              return h('div', [
+                h('Button', {
+                  props: {
+                    type: 'primary',
+                    size: 'small'
+                  },
+                  style: {
+                    marginRight: '5px'
+                  },
+                  on: {
+                    click: () => {
+                      alert(params.row.END_NO)
+                    }
+                  }
+                }, 'View')
+              ]);
+            }
+          }
+        ],
+        userTableData: [{ 'DOC_TYPE': 1, 'PRODUCT_NAME': 2, 'START_NO': 3, 'END_NO': 4, 'QUANTITY': 5, 'TRAILBOX_ID': 6 }]
+      },
+      mounted: function () {
+        alert(this.userTableData[0].END_NO)
+      },
+      methods: {
+        show: function (params) {
+          alert(this.userTableData[params.index].END_NO)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
